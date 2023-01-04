@@ -1,4 +1,4 @@
-class HomebrewSob < Formula
+class Sob < Formula
     desc "Single Binary"
     homepage "https://github.com/AgentofAsgard/sg"
     head "https://github.com/AgentofAsgard/sg.git"
@@ -12,13 +12,15 @@ class HomebrewSob < Formula
     depends_on "seaweedfs" => :build
 
     def install
+        ENV["ENTERPRISE"] = "1"
+        ENV["DEV_WEB_BUILDER"] = "esbuild yarn run build-web"
         ldflags = %W[
           -s -w
           -X github.com/AgentofAsgard/sg/internal/version.version=${VERSION-0.0.0+dev}
           -X github.com/AgentofAsgard/sg/internal/version.timestamp=$(date +%s)
           -X github.com/AgentofAsgard/sg/internal/conf/deploy.forceType=single-program
         ]
-        system "ENTERPRISE=1", "DEV_WEB_BUILDER='esbuild yarn run build-web'", "go", "build", *std_go_args(output: bin/"sbtest", ldflags: ldflags), "./enterprise/cmd/sourcegraph"
+        system "go", "build", *std_go_args(output: bin/"sob", ldflags: ldflags), "./enterprise/cmd/sourcegraph"
       end
 
 end
