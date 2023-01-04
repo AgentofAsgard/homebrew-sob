@@ -1,4 +1,4 @@
-class Sob < Formula
+class Sbtest < Formula
     desc "Single Binary"
     homepage "https://github.com/AgentofAsgard/sg"
     head "https://github.com/AgentofAsgard/sg.git"
@@ -11,10 +11,6 @@ class Sob < Formula
     depends_on "universal-ctags" => :build
     depends_on "seaweedfs" => :build
 
-    # def install
-    #     bin.install "sob"
-    # end
-
     def install
         ldflags = %W[
           -s -w
@@ -22,7 +18,7 @@ class Sob < Formula
           -X github.com/AgentofAsgard/sg/internal/version.timestamp=$(date +%s)
           -X github.com/AgentofAsgard/sg/internal/conf/deploy.forceType=single-program
         ]
-        system "ENTERPRISE=1", "DEV_WEB_BUILDER='esbuild yarn run build-web'", "go", "build", *std_go_args(output: bin/"sob", ldflags: ldflags), "./enterprise/cmd/sourcegraph"
+        system "ENTERPRISE=1", "DEV_WEB_BUILDER='esbuild yarn run build-web'", "go", "build", *std_go_args(output: bin/"sbtest", ldflags: ldflags), "./enterprise/cmd/sourcegraph"
       end
 
 end
