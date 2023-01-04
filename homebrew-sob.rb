@@ -20,7 +20,8 @@ class HomebrewSob < Formula
           -X github.com/AgentofAsgard/sg/internal/version.timestamp=$(date +%s)
           -X github.com/AgentofAsgard/sg/internal/conf/deploy.forceType=single-program
         ]
-        system "go", "build", *std_go_args(output: bin/"sob", ldflags: ldflags), "github.com/AgentofAsgard/sg/enterprise/cmd/sourcegraph"
+        system "go", "get", "github.com/AgentofAsgard/sg/enterprise/cmd/sourcegraph"
+        system "go", "build", *std_go_args(output: bin/"sob", ldflags: ldflags), "github.com/sourcegraph/sourcegraph/enterprise/cmd/sourcegraph"
       end
 
 end
