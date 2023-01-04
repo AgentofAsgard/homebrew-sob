@@ -1,4 +1,4 @@
-class Sbtest < Formula
+class HomebrewSob < Formula
     desc "Single Binary"
     homepage "https://github.com/AgentofAsgard/sg"
     head "https://github.com/AgentofAsgard/sg.git"
