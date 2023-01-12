@@ -1,15 +1,8 @@
 class HomebrewSob < Formula
+    version "0.0.0"
     desc "Single Binary"
     homepage "https://github.com/AgentofAsgard/sg"
     url "https://github.com/AgentofAsgard/sg.git", :branch => "new-main"
-    # depends_on "go" => :build
-    # depends_on "autoconf" => :build
-    # depends_on "automake" => :build
-    # depends_on "docutils" => :build
-    # depends_on "pkg-config" => :build
-    # depends_on "sourcegraph/src-cli/src-cli" => :build
-    # depends_on "universal-ctags" => :build
-    # depends_on "redis" => :build
 
     def install
         ENV["ENTERPRISE"] = "1"
@@ -20,6 +13,6 @@ class HomebrewSob < Formula
           -X github.com/AgentofAsgard/sg/internal/version.timestamp=$(date +%s)
           -X github.com/AgentofAsgard/sg/internal/conf/deploy.forceType=single-program
         ]
-        system "go", "build", *std_go_args(output: bin/"sgapp", ldflags: ldflags), "./enterprise/cmd/sourcegraph"
+        system "go", "build", *std_go_args(output: bin/"sgapp", ldflags: ldflags), "#{Formula["homebrew-sob"].libexec}/enterprise/cmd/sourcegraph"
     end
 end
