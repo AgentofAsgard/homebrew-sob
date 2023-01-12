@@ -5,6 +5,7 @@ class HomebrewSob < Formula
     url "https://github.com/AgentofAsgard/sg.git", :branch => "new-main"
 
     def install
-        bin.install "enterprise/cmd/sourcegraph/build.sh"
+        system "bash", "enterprise/cmd/sourcegraph/build.sh"
+        system "mv", ".bin/sourcegraph-darwin-arm64-dist", "bin/sgapp"
     end
 end
